@@ -1,0 +1,2 @@
+v 1.0.0
+    - initial implementation w/ dropwizard 0.8.1 + mongo driver 2.13.0
