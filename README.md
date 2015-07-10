@@ -16,10 +16,19 @@ Include as a maven dependency:
 </dependency>
 ```
 
+NOTE: this JAR assumes the composing application will provide a compatible version of com.hubspot.dropwizard.dropwizard-guice and a compatible version of org.mongodb.mongo-java-driver.  
+
 In your application's main initialize() method, add a new MongoBundle to your guice bundle, for example:
 
 ```java
-guiceBundle = GuiceBundle.<MyConfiguration>newBuilder()
+import com.hubspot.dropwizard.guice.GuiceBundle;
+import com.washingtonpost.mongo.dropwizard.MongoModule;
+
+public class MyApplication extends Application<MyConfiguration> {
+
+    @Override
+    public void initialize(Bootstrap<MyConfiguration> bootstrap) {
+        guiceBundle = GuiceBundle.<MyConfiguration>newBuilder()
                 .addModule(new MongoModule())
                 .enableAutoConfig("com.washingtonpost")
                 .setConfigClass(MyConfiguration.class)
@@ -29,6 +38,8 @@ guiceBundle = GuiceBundle.<MyConfiguration>newBuilder()
 Add configuration to your application's configuration class, like:
 
 ```java
+import com.washingtonpost.mongo.dropwizard.MongoFactory;
+
 public class MyConfiguration extends Configuration {
 
     private MongoFactory mongoFactory = new MongoFactory();
