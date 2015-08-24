@@ -120,6 +120,7 @@ public class MongoFactory {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+        this.dbName = "foo"; // to avoid an NPE when guice calls "buildDB()"... it doesn't matter what this is
     }
 
     /**
