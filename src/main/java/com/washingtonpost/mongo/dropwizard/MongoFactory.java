@@ -32,30 +32,41 @@ public class MongoFactory {
      * Optional Username used to connect; if provided with a non-null password, an attempt to authenticate
      * to the provided {@code dbName} will be made.
      */
+    @JsonProperty
     private String user;
     
     /**
      * Optional Password associated with the user; if provided with a non-null user, an attempt to authenticate
      * to the provided {@code dbName} will be made.
      */
+    @JsonProperty
     private String pass;
 
     /**
      * At least one, but possibly many comma-separated (server:port) pairs to which the user/pass should connect
      * See http://docs.mongodb.org/manual/reference/connection-string/
      */
+    @JsonProperty
     private String hosts;
     
     /**
      * Optional name of the database. This property is required to use the dbBuild method.
      */
+    @JsonProperty
     private String dbName;
 
     /**
      * Optional "?options" string to append to the end of the connection URI.
      * See http://docs.mongodb.org/manual/reference/connection-string/
      */
+    @JsonProperty
     private String options;
+
+    /**
+     * Optional flag that prevents any actual connections to the Mongo DB
+     */
+    @JsonProperty
+    private boolean disabled;
 
     /**
      * The mongo API documentation for <a href="https://api.mongodb.org/java/current/com/mongodb/MongoClient.html">
@@ -63,55 +74,52 @@ public class MongoFactory {
      */
     private MongoClient mongoClient;
 
-    @JsonProperty
     public String getUser() {
         return this.user;
     }
     
-    @JsonProperty
     public void setUser(String user) {
         this.user = user;
     }
     
-    @JsonProperty
     public String getPass() {
         return this.pass;
     }
     
-    @JsonProperty
     public void setPass(String pass) {
         this.pass = pass;
     }
 
-    @JsonProperty
     public String getHosts() {
         return this.hosts;
     }
 
-    @JsonProperty
     public void setHosts(String hosts) {
         this.hosts = hosts;
     }
 
-    @JsonProperty
     public String getOptions() {
         return this.options;
     }
 
-    @JsonProperty
     public void setOptions(String options) {
         this.options = options;
     }
     
-
-    @JsonProperty
     public String getDbName() {
         return dbName;
     }
 
-    @JsonProperty
     public void setDbName(String dbName) {
         this.dbName = dbName;
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
     }
 
     /**
@@ -122,6 +130,10 @@ public class MongoFactory {
      * @throws UnknownHostException Thrown if the server can not be found.
      */
     public MongoClient buildClient() throws UnknownHostException {
+        if (this.disabled) {
+            return new MongoClient();
+        }
+
         if (this.mongoClient != null) {
             return mongoClient;
         }
@@ -137,7 +149,7 @@ public class MongoFactory {
      * @throws java.net.UnknownHostException if the host is unknown
      */
     public DB buildDB() throws UnknownHostException {
-        if(this.dbName == null) {
+        if (this.dbName == null && !this.disabled) {
             throw new NullDBNameException();
         }
 

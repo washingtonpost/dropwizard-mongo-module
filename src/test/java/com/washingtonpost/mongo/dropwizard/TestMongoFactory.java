@@ -4,6 +4,7 @@ import com.mongodb.DB;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 /**
@@ -105,5 +106,14 @@ public class TestMongoFactory {
         factory.setDbName("foo");
         DB db = factory.buildDB();
         assertThat(db.getName()).isEqualTo("foo");
+    }
+
+    @Test
+    public void testDisabledModule() throws UnknownHostException {
+        MongoFactory factory = new MongoFactory();
+        factory.setDisabled(true);
+
+        assertNotNull("Expected a non-null client when disable=true", factory.buildClient());
+        assertNotNull("Expected a non-null DB when disabled=true", factory.buildDB());
     }
 }
