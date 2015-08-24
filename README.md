@@ -100,4 +100,5 @@ mongoDB:
     hosts: // at least one, but possibly many comma-separated, host:port pairs hosting Mongo DBs.
     dbName: // optional name of the DB Collection to initially connect to when requesting MongoModule.provideDB
     options: // optional connection configuration parameters for the Mongo driver
+    disabled: // optional boolean that will cause the Module to provide non-null, but non-functional DB/MongoClient objects
 ```
