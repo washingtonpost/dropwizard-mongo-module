@@ -10,7 +10,7 @@
     
     <groupId>com.washingtonpost.dropwizard</groupId>
     <artifactId>dropwizard-mongo</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
         <jacoco.datafile.location>${project.build.directory}/jacoco/coverage.exec</jacoco.datafile.location>
@@ -32,7 +32,7 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:WPMedia/dropwizard-mongo-module.git</developerConnection>
-        <tag>1.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
     
     <dependencies>
