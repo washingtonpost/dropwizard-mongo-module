@@ -1,5 +1,9 @@
 # dropwizard-mongo Release Notes
 
+## 2.0.0 Release Date 2015/08/24
+
+* Opensourced (moved parent to wp-oss-parent-pom & repo to github.com/washingtonpost)
+
 ## 1.1.0 Release Date 2015/08/24
 
 * Adds a "disabled" flag 
