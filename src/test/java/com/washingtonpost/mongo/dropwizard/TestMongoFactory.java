@@ -109,6 +109,14 @@ public class TestMongoFactory {
     }
 
     @Test
+    public void testBuildDBWithProvidedName() throws UnknownHostException {
+        MongoFactory factory = new MongoFactory();
+        factory.setHosts("localhost");
+        DB db = factory.buildDB("bar");
+        assertThat(db.getName()).isEqualTo("bar");
+    }
+
+    @Test
     public void testDisabledModule() throws UnknownHostException {
         MongoFactory factory = new MongoFactory();
         factory.setDisabled(true);

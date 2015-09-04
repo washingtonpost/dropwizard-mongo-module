@@ -1,5 +1,9 @@
 # dropwizard-mongo Release Notes
 
+## 2.1.0 TBD / under development
+
+* Added the MongoFactory.buildDB(String) method
+
 ## 2.0.0 Release Date 2015/08/24
 
 * Opensourced (moved parent to wp-oss-parent-pom & repo to github.com/washingtonpost)

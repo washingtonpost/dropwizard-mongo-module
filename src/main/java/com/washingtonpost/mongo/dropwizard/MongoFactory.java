@@ -150,12 +150,23 @@ public class MongoFactory {
      * @throws java.net.UnknownHostException if the host is unknown
      */
     public DB buildDB() throws UnknownHostException {
-        if (this.dbName == null && !this.disabled) {
+        return buildDB(this.dbName);
+    }
+
+    /**
+     * Builds a Mongo {@code DB} object from connection and db info set in a configuration file, but against whatever DB is
+     * provided in the {@code dbName} argument.
+     * @param dbName The name of the mongo DB to connect to.
+     * @return A Mongo Java API {@code DB} object.
+     * @throws java.net.UnknownHostException if the host is unknown
+     */
+    public DB buildDB(String dbName) throws UnknownHostException {
+        if (dbName == null && !this.disabled) {
             throw new NullDBNameException();
         }
 
         Mongo client = buildClient();
-        return client.getDB(this.dbName);
+        return client.getDB(dbName);
     }
 
     // Visible for testing

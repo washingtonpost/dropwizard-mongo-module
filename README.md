@@ -87,6 +87,14 @@ public class MyModule extends AbstractModule {
     }
 ```
 
+## Runtime DB Connections
+If you don't know ahead of time what the name of your DB is going to be, you can create a `DB` object at runtime with the alternative method signature on the MongoFactory:
+```
+    MongoFactory factory = new MongoFactory();
+    factory.setHosts("localhost");
+    DB db = factory.buildDB("bar");
+```
+
 # Configuration
 The Mongo configuration options map directly to the different parts of an allowed com.mongo.MongoClientURI, per the scheme defined here [http://docs.mongodb.org/manual/reference/connection-string/]
 
