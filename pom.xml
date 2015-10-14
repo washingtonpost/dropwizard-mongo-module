@@ -21,8 +21,8 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:WPMedia/dropwizard-mongo-module.git</connection>
-        <developerConnection>scm:git:git@github.com:WPMedia/dropwizard-mongo-module.git</developerConnection>
+        <connection>scm:git:git@github.com:washingtonpost/dropwizard-mongo-module.git</connection>
+        <developerConnection>scm:git:git@github.com:washingtonpost/dropwizard-mongo-module.git</developerConnection>
         <url>https://github.com/washingtonpost/dropwizard-mongo-module</url>
         <tag>HEAD</tag>
     </scm>
