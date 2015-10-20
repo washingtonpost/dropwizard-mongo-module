@@ -4,6 +4,7 @@ import com.mongodb.DB;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
@@ -123,5 +124,22 @@ public class TestMongoFactory {
 
         assertNotNull("Expected a non-null client when disable=true", factory.buildClient());
         assertNotNull("Expected a non-null DB when disabled=true", factory.buildDB());
+    }
+
+    @Test
+    public void testMongoFactoryToStringDoesntLeakPassword() {
+        MongoFactory factory = new MongoFactory();
+        factory.setHosts("whatever:432,blah:987");
+        factory.setDbName("myCollection");
+        factory.setUser("user");
+        factory.setPass("pass");
+        factory.setOptions("option1=x,option2=y");
+
+        String expected = "MongoFactory[hosts:'whatever:432,blah:987', "
+                + "dbName:'myCollection', "
+                + "user:'user', "
+                + "pass:'xxxx', "
+                + "options:'option1=x,option2=y']";
+        assertEquals(expected, factory.toString());
     }
 }
