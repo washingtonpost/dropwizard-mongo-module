@@ -9,7 +9,6 @@ import com.mongodb.MongoClientURI;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * An object of this class creates a single instance of the <code>MongoClient</code> object.
@@ -205,7 +204,14 @@ public class MongoFactory {
     
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        StringBuilder sb = new StringBuilder("MongoFactory[");
+        sb.append("hosts:'").append(this.hosts).append("', ");
+        sb.append("dbName:'").append(this.dbName).append("', ");
+        sb.append("user:'").append(this.user).append("', ");
+        sb.append("pass:'").append(this.pass.replaceAll(".", "x")).append("', ");
+        sb.append("options:'").append(this.options).append("'");
+        sb.append("]");
+        return sb.toString();
     }
 
 }
