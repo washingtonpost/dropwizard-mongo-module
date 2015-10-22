@@ -45,8 +45,8 @@ public class MongoModule extends AbstractModule {
     @Provides
     @Named("db")
     public DB provideMongoDB(@Named("mongoFactory") MongoFactory factory) throws UnknownHostException {
-        logger.info("MongoFactory configuration = {}", factory);
         if (db == null) {
+            logger.info("Building new Mongo DB instance with MongoFactory configuration = {}", factory);
             db = factory.buildDB();
         }
         return db;
