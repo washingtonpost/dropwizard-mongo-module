@@ -1,10 +1,14 @@
 # dropwizard-mongo Release Notes
 
-## 3.0.2 Release Date TBD
+## 4.0.0 Release Date TBD
 
 * Upgrading libraries to Dropwizard-0.9.1 compatible versions,
    specifically assertj 2.0.0 -> 2.2.0 and 
    dropwizard-guice 0.8.1.0 -> 0.8.3.0
+
+## 3.0.2 Release Date TBD
+
+* Fixing harmless exceptions that happen on startup
 
 ## 3.0.1 Release Date 2015/10/20
 
