@@ -6,7 +6,7 @@
    specifically assertj 2.0.0 -> 2.2.0 and 
    dropwizard-guice 0.8.1.0 -> 0.8.3.0
 
-## 3.0.2 Release Date TBD
+## 3.0.2 Release Date 2015/11/24
 
 * Fixing harmless exceptions that happen on startup
 
