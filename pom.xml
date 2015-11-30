@@ -14,7 +14,7 @@
     <packaging>jar</packaging>
     <properties>
         <version.assertj>2.2.0</version.assertj>
-        <version.dropwizard.guice>0.8.3.0</version.dropwizard.guice>
+        <version.dropwizard.guice>0.8.4.0</version.dropwizard.guice>
         <version.junit>4.12</version.junit>
         <version.mongo.driver>3.1.0</version.mongo.driver>
         <version.wp.checkstyle>2.0</version.wp.checkstyle>
