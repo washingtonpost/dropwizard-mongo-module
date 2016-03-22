@@ -1,6 +1,7 @@
 package com.washingtonpost.mongo.dropwizard;
 
 import com.mongodb.DB;
+import com.mongodb.client.MongoDatabase;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -116,6 +117,25 @@ public class TestMongoFactory {
         DB db = factory.buildDB("bar");
         assertThat(db.getName()).isEqualTo("bar");
     }
+
+
+    @Test
+    public void testBuildMongoDatabase() throws UnknownHostException {
+        MongoFactory factory = new MongoFactory();
+        factory.setHosts("localhost");
+        factory.setDbName("foo");
+        MongoDatabase database = factory.buildMongoDatabase();
+        assertThat(database.getName()).isEqualTo("foo");
+    }
+
+    @Test
+    public void testBuildMongoDatabaseWithProvidedName() throws UnknownHostException {
+        MongoFactory factory = new MongoFactory();
+        factory.setHosts("localhost");
+        MongoDatabase database = factory.buildMongoDatabase("bar");
+        assertThat(database.getName()).isEqualTo("bar");
+    }
+
 
     @Test
     public void testDisabledModule() throws UnknownHostException {

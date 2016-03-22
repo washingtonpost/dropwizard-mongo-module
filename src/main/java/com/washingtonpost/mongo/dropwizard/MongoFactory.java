@@ -190,6 +190,7 @@ public class MongoFactory {
             throw new NullDBNameException();
         }
 
+        MongoClient client = buildClient();
         return mongoClient.getDatabase(dbName);
     }
 
