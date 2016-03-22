@@ -6,6 +6,7 @@ import com.mongodb.DB;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +34,7 @@ public class MongoFactory {
      */
     @JsonProperty
     private String user;
-    
+
     /**
      * Optional Password associated with the user; if provided with a non-null user, an attempt to authenticate
      * to the provided {@code dbName} will be made.
@@ -47,7 +48,7 @@ public class MongoFactory {
      */
     @JsonProperty
     private String hosts;
-    
+
     /**
      * Optional name of the database. This property is required to use the dbBuild method.
      */
@@ -76,15 +77,15 @@ public class MongoFactory {
     public String getUser() {
         return this.user;
     }
-    
+
     public void setUser(String user) {
         this.user = user;
     }
-    
+
     public String getPass() {
         return this.pass;
     }
-    
+
     public void setPass(String pass) {
         this.pass = pass;
     }
@@ -104,7 +105,7 @@ public class MongoFactory {
     public void setOptions(String options) {
         this.options = options;
     }
-    
+
     public String getDbName() {
         return dbName;
     }
@@ -168,6 +169,30 @@ public class MongoFactory {
         return client.getDB(dbName);
     }
 
+    /**
+     * Builds a Mongo {@code MongoDatabase} object from connection and db info set in a configuration file.
+     * @return A Mongo Java API {@code MongoDatabase} object.
+     * @throws java.net.UnknownHostException if the host is unknown
+     */
+    public MongoDatabase buildMongoDatabase() throws UnknownHostException {
+        return buildMongoDatabase(this.dbName);
+    }
+
+    /**
+     * Builds a Mongo {@code MongoDatabase} object from connection and db info set in a configuration file, but against whatever DB is
+     * provided in the {@code dbName} argument.
+     * @param dbName The name of the mongo DB to connect to.
+     * @return A Mongo Java API {@code MongoDatabase} object.
+     * @throws java.net.UnknownHostException if the host is unknown
+     */
+    public MongoDatabase buildMongoDatabase(String dbName) throws UnknownHostException {
+        if (dbName == null && !this.disabled) {
+            throw new NullDBNameException();
+        }
+
+        return mongoClient.getDatabase(dbName);
+    }
+
     // Visible for testing
     MongoClientURI buildMongoClientURI() {
         Preconditions.checkState((StringUtils.isEmpty(this.user) &&  StringUtils.isEmpty(this.pass))
@@ -198,10 +223,10 @@ public class MongoFactory {
             uriString.append("?")
                     .append(this.options);
         }
-        
+
         return new MongoClientURI(uriString.toString());
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("MongoFactory[");
