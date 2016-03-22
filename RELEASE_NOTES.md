@@ -1,9 +1,13 @@
 # dropwizard-mongo Release Notes
 
+## 4.0.1 Release Date 2016/03/22
+
+* Adding support for Mongo Driver 3.0 MongoDatabase interface
+
 ## 4.0.0 Release Date 2015/11/30
 
 * Upgrading libraries to Dropwizard-0.9.1 compatible versions,
-   specifically assertj 2.0.0 -> 2.2.0 and 
+   specifically assertj 2.0.0 -> 2.2.0 and
    dropwizard-guice 0.8.1.0 -> 0.8.4.0
 
 ## 3.0.2 Release Date 2015/11/24
@@ -25,7 +29,7 @@
 
 ## 1.1.0 Release Date 2015/08/24
 
-* Adds a "disabled" flag 
+* Adds a "disabled" flag
 
 ## 1.0.0 Release Date 2015/07/10
 
