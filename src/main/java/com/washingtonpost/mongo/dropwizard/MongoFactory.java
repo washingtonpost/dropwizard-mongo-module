@@ -191,7 +191,11 @@ public class MongoFactory {
         }
 
         MongoClient client = buildClient();
-        return mongoClient.getDatabase(dbName);
+        if (client == null) {
+            return null;
+        }
+
+        return client.getDatabase(dbName);
     }
 
     // Visible for testing
