@@ -10,7 +10,7 @@
 
     <groupId>com.washingtonpost.dropwizard</groupId>
     <artifactId>dropwizard-mongo</artifactId>
-    <version>4.0.4-SNAPSHOT</version>
+    <version>4.0.3-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
         <version.assertj>2.2.0</version.assertj>
