@@ -1,5 +1,13 @@
 # dropwizard-mongo Release Notes
 
+## 4.0.3 Release Date 2016/11/30
+
+* Increase Mongo Driver version to 3.3
+
+## 4.0.2 Release Date 2016/06/21
+
+* Fixes issue where guicing a MongoDatabase in disabled mode throws a NullPointerException
+
 ## 4.0.1 Release Date 2016/03/22
 
 * Adding support for Mongo Driver 3.0 MongoDatabase interface
