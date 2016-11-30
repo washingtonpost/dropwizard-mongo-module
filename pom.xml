@@ -10,7 +10,7 @@
 
     <groupId>com.washingtonpost.dropwizard</groupId>
     <artifactId>dropwizard-mongo</artifactId>
-    <version>4.0.3-SNAPSHOT</version>
+    <version>4.0.3</version>
     <packaging>jar</packaging>
     <properties>
         <version.assertj>2.2.0</version.assertj>
@@ -24,7 +24,7 @@
         <connection>scm:git:git@github.com:washingtonpost/dropwizard-mongo-module.git</connection>
         <developerConnection>scm:git:git@github.com:washingtonpost/dropwizard-mongo-module.git</developerConnection>
         <url>https://github.com/washingtonpost/dropwizard-mongo-module</url>
-        <tag>HEAD</tag>
+        <tag>4.0.3</tag>
     </scm>
 
     <dependencies>
