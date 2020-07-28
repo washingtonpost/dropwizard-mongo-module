@@ -10,6 +10,7 @@ import com.mongodb.client.MongoDatabase;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import org.apache.commons.lang3.StringUtils;
+import sun.jvm.hotspot.utilities.CStringUtilities;
 
 /**
  * An object of this class creates a single instance of the <code>MongoClient</code> object.
@@ -69,6 +70,13 @@ public class MongoFactory {
     private boolean disabled;
 
     /**
+     * Optional prefix to add to protocol connection
+     * mongodb+prefix:// 
+     */
+    @JsonProperty
+    private String prefix;
+
+    /**
      * The mongo API documentation for <a href="https://api.mongodb.org/java/current/com/mongodb/MongoClient.html">
      * MongoClient</a> states that there should only be one object per JVM, so this property is only set once.
      */
@@ -121,6 +129,14 @@ public class MongoFactory {
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
         this.dbName = "foo"; // to avoid an NPE when guice calls "buildDB()"... it doesn't matter what this is
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     /**
@@ -205,7 +221,15 @@ public class MongoFactory {
                 "If you define a Mongo user, you must also define a Mongo pass, and vice-versa");
         Preconditions.checkNotNull(this.hosts, "Must define Mongo 'hosts' property");
 
-        StringBuilder uriString = new StringBuilder("mongodb://");
+        StringBuilder uriString = new StringBuilder("mongodb");
+
+        if(!StringUtils.isEmpty(this.prefix)) {
+            uriString.append("+")
+                    .append(this.prefix);
+        }
+
+        uriString.append("://");
+
         if (!StringUtils.isEmpty(this.user)) {
             uriString.append(this.user)
                     .append(":")
