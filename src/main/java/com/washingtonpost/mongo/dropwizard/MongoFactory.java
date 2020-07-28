@@ -10,7 +10,6 @@ import com.mongodb.client.MongoDatabase;
 import com.washingtonpost.mongo.dropwizard.exceptions.NullDBNameException;
 import java.net.UnknownHostException;
 import org.apache.commons.lang3.StringUtils;
-import sun.jvm.hotspot.utilities.CStringUtilities;
 
 /**
  * An object of this class creates a single instance of the <code>MongoClient</code> object.
