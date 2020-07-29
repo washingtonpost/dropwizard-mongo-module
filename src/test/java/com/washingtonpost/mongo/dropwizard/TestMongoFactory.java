@@ -68,9 +68,9 @@ public class TestMongoFactory {
     public void testMongoClientURIWithPrefix() {
         MongoFactory factory = new MongoFactory();
         factory.setPrefix("srv");
-        factory.setHosts("whatever:567");
+        factory.setHosts("mongodb.example.host");
         assertThat(factory.buildMongoClientURI().toString())
-                .isEqualTo("mongodb+srv://whatever:567");
+                .isEqualTo("mongodb+srv://mongodb.example.host");
     }
 
     @Test
