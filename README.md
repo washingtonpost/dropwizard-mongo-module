@@ -64,6 +64,7 @@ mongoDB:
     hosts: ${MONGO_HOSTS}
     dbName: ${MONGO_DBNAME}
     options: ${MONGO_OPTIONS}
+    prefix: ${MONGO_PREFIX}
 ```
 
 And finally make sure your Guice wiring "provides" the MongoFactory as a bean (it's needed by name "mongoFactory" in the MongoModule that you wired into your Guice bundle):
