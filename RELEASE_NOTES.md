@@ -1,5 +1,9 @@
 # dropwizard-mongo Release Notes
 
+## 4.0.7 Release Date 2022/02/28
+
+* Increase Mongo Driver version to 3.12.10 in order to support mongo 5 version
+
 ## 4.0.6 Release Date 2019/02/04
 
 * Increase Mongo Driver version to 3.12.7 in order to support mongo 4.4 version
