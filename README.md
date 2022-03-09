@@ -111,3 +111,24 @@ mongoDB:
     options: // optional connection configuration parameters for the Mongo driver
     disabled: // optional boolean that will cause the Module to provide non-null, but non-functional DB/MongoClient objects
 ```
+---
+# Creating new Maven Central Repository Release in Sonatype Nexus
+
+## Requirements
+
+### Registered with access role to Nexus repository
+Request access by submitting ticket to Nexus [support](https://support.sonatype.com/hc/en-us/requests/new).  This may take a few days to fulfill
+
+### GPG keypair
+[Instructions](https://central.sonatype.org/publish/requirements/gpg/) for creating keypair and sending public GPG key
+
+### Update local Maven settings.xml
+File should be found in Maven local repository  `~/.m2/settings.xml` or `$HOME/.m2/settings.xml`.  Follow these [instructions](https://central.sonatype.org/publish/publish-maven/) specific to updating local settins.xml.  
+Note: the needed plugins are already added to dropwizard-mongo-module [pom.xml](https://github.com/washingtonpost/dropwizard-mongo-module/blob/master/pom.xml).
+
+## Push Release to Nexus
+
+1. Create Git release
+2. Checkout release to local
+3. Execute `mvn clean deploy -Dmaven.skip.test=true -Dpgp.passphrase=<your-gpg-passphrase>`
+4. Validate in Nexus [dropwizard-mongo-module](https://oss.sonatype.org/#stagingRepositories) for any errors.  *Failed Signature Validation* means GPG verification was not successful.
