@@ -13,7 +13,7 @@
     <version>4.0.8-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
-        <version.assertj>2.2.0</version.assertj>
+        <version.assertj>3.27.7</version.assertj>
         <version.dropwizard.guice>0.8.4.0</version.dropwizard.guice>
         <version.junit>4.12</version.junit>
         <version.mongo.driver>3.12.10</version.mongo.driver>
